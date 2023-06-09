@@ -60,8 +60,6 @@ partial class TheGreenMile
         label10 = new Label();
         tbFirstName = new TextBox();
         label9 = new Label();
-        nmrEmployeeNumber = new NumericUpDown();
-        label8 = new Label();
         tbTrips = new TabPage();
         groupBox1 = new GroupBox();
         btnRegisterTrip = new Button();
@@ -96,7 +94,6 @@ partial class TheGreenMile
         ((System.ComponentModel.ISupportInitialize)nmrEndOfLife).BeginInit();
         tbEmployees.SuspendLayout();
         gpEmployees.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)nmrEmployeeNumber).BeginInit();
         tbTrips.SuspendLayout();
         groupBox1.SuspendLayout();
         groupBox3.SuspendLayout();
@@ -334,6 +331,7 @@ partial class TheGreenMile
         lbEmployees.Name = "lbEmployees";
         lbEmployees.Size = new Size(356, 364);
         lbEmployees.TabIndex = 1;
+        lbEmployees.DoubleClick += lbEmployees_DoubleClick;
         // 
         // gpEmployees
         // 
@@ -344,8 +342,6 @@ partial class TheGreenMile
         gpEmployees.Controls.Add(label10);
         gpEmployees.Controls.Add(tbFirstName);
         gpEmployees.Controls.Add(label9);
-        gpEmployees.Controls.Add(nmrEmployeeNumber);
-        gpEmployees.Controls.Add(label8);
         gpEmployees.Location = new Point(17, 13);
         gpEmployees.Name = "gpEmployees";
         gpEmployees.Size = new Size(366, 195);
@@ -410,25 +406,6 @@ partial class TheGreenMile
         label9.Size = new Size(65, 15);
         label9.TabIndex = 2;
         label9.Text = "First name:";
-        // 
-        // nmrEmployeeNumber
-        // 
-        nmrEmployeeNumber.Location = new Point(127, 27);
-        nmrEmployeeNumber.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
-        nmrEmployeeNumber.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-        nmrEmployeeNumber.Name = "nmrEmployeeNumber";
-        nmrEmployeeNumber.Size = new Size(231, 23);
-        nmrEmployeeNumber.TabIndex = 1;
-        nmrEmployeeNumber.Value = new decimal(new int[] { 1, 0, 0, 0 });
-        // 
-        // label8
-        // 
-        label8.AutoSize = true;
-        label8.Location = new Point(14, 29);
-        label8.Name = "label8";
-        label8.Size = new Size(107, 15);
-        label8.TabIndex = 0;
-        label8.Text = "Employee number:";
         // 
         // tbTrips
         // 
@@ -707,7 +684,6 @@ partial class TheGreenMile
         tbEmployees.ResumeLayout(false);
         gpEmployees.ResumeLayout(false);
         gpEmployees.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)nmrEmployeeNumber).EndInit();
         tbTrips.ResumeLayout(false);
         tbTrips.PerformLayout();
         groupBox1.ResumeLayout(false);
@@ -745,8 +721,6 @@ partial class TheGreenMile
     private TextBox tbFilterCars;
     private GroupBox gpEmployees;
     private Label label9;
-    private NumericUpDown nmrEmployeeNumber;
-    private Label label8;
     private TextBox tbLastName;
     private Label label10;
     private TextBox tbFirstName;

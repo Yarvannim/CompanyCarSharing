@@ -9,27 +9,30 @@ namespace CompanyCarSharing
     public class Employees
     {
         private List<Employee> _employees = new List<Employee>();
+        private Database db = new Database();
         public Employees()
         {
 
         }
 
-        public void RegisterEmployee(int EmployeeID, string firstname, string lastname, string email)
+        public void RegisterEmployee(string firstname, string lastname, string email)
         {
             Employee employee = new Employee();
-            employee.AssignValuesToNewEmployee(EmployeeID, firstname, lastname,email);
+            employee.AssignValuesToNewEmployee(firstname, lastname,email);
             _employees.Add(employee);
+            db.InsertEmployee(employee);
         }
 
         public void RemoveEmployee(Employee employee)
         {
             Employee employeeToRemove = _employees.First(e => e.EmployeeNumber == employee.EmployeeNumber);
+            db.DeleteEmployee(employeeToRemove);
             _employees.Remove(employeeToRemove);
         }
 
         public List<Employee> GetAllEmployees()
         {
-            return _employees;
+            return db.GetAllEmployees();
         }
         public List<Employee> GetFilteredEmployees(string searchQuery)
         {

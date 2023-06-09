@@ -9,6 +9,13 @@ namespace CompanyCarSharing
     public class Car
     {
         private List<Trip> _trips = new List<Trip>();
+        private int _id;
+
+        public int ID
+        {
+            get { return _id; }
+        }
+
         private string _brand;
 
         public string Brand
@@ -63,6 +70,16 @@ namespace CompanyCarSharing
             this._licencePlate = licenceplate;
             this._maintenanceInterval = maintenanceIntervalKM;
         }
+        public void AssignValuesToCarFromDatabase(int ID,string brand, string model, int endoflife, int currentkm, string licenceplate, int maintenanceIntervalKM)
+        {
+            this._id = ID;
+            this._brand = brand;
+            this._model = model;
+            this._endOfLifeMilage = endoflife;
+            this._currentMilage = currentkm;
+            this._licencePlate = licenceplate;
+            this._maintenanceInterval = maintenanceIntervalKM;
+        }
         public void AddMilage(int Kilometers)
         {
             _currentMilage += Kilometers;
@@ -75,8 +92,8 @@ namespace CompanyCarSharing
 
         public void AddTrip(Trip trip)
         {
-            AddMilage(trip.Kilometers);
             _trips.Add(trip);
+            AddMilage(trip.Kilometers);
         }
     }
 }

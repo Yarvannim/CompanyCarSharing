@@ -7,19 +7,29 @@ public partial class TheGreenMile : Form
     public TheGreenMile()
     {
         InitializeComponent();
+        Boot();
     }
 
+    private void Boot()
+    {
+        foreach (Car car in _carpool.GetCars())
+        {
+            lbCars.Items.Add(car);
+            lbTripsCars.Items.Add(car);
+        }
+        foreach (Employee employee in _employees.GetAllEmployees())
+        {
+            lbEmployees.Items.Add(employee);
+            lbTripsEmployees.Items.Add(employee);
+        }
+    }
+    #region Cars
     private void btnAddCar_Click(object sender, EventArgs e)
     {
         if (CheckCarsTextboxes())
         {
             _carpool.AddCarToPool(tbCarBrand.Text, tbCarModel.Text, Convert.ToInt32(nmrEndOfLife.Value), Convert.ToInt32(nmrCurrentMilage.Value), tbLicencePlate.Text, Convert.ToInt32(nmrMaintenanceInterval.Value));
-            FillCarsList(_carpool.GetAllCars(), "All");
-        }
-        else
-        {
-            MessageBox.Show("Please fill in all the necessary fields", "Error", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+            FillCarsList(_carpool.GetCars(), "All");
         }
     }
 
@@ -89,6 +99,19 @@ public partial class TheGreenMile : Form
         if (selectedCar() != null)
         {
             _carpool.RemoveCarFromPool(selectedCar());
+            FillCarsList(_carpool.GetCars(), "All");
+        }
+    }
+
+    private void FilterCars_Key_Up_Event(object sender, KeyEventArgs e)
+    {
+        if ((sender as TextBox).Tag == "Cars")
+        {
+            FilterForCarsTab();
+        }
+        else
+        {
+            FilterForTripsTab();
         }
     }
 
@@ -100,9 +123,10 @@ public partial class TheGreenMile : Form
         }
         else
         {
-            FillCarsList(_carpool.GetAllCars(), "Cars");
+            FillCarsList(_carpool.GetCars(), "Cars");
         }
     }
+    #endregion
 
     private void FilterForTripsTab()
     {
@@ -112,7 +136,7 @@ public partial class TheGreenMile : Form
         }
         else
         {
-            FillCarsList(_carpool.GetAllCars(), "Trips");
+            FillCarsList(_carpool.GetCars(), "Trips");
         }
     }
 
@@ -120,7 +144,7 @@ public partial class TheGreenMile : Form
     {
         if (CheckEmployeesTextboxes())
         {
-            _employees.RegisterEmployee(Convert.ToInt32(nmrEmployeeNumber.Value), tbFirstName.Text, tbLastName.Text, tbEmail.Text);
+            _employees.RegisterEmployee(tbFirstName.Text, tbLastName.Text, tbEmail.Text);
             FillEmployeesList();
         }
         else
@@ -179,18 +203,6 @@ public partial class TheGreenMile : Form
         }
     }
 
-    private void FilterCars_Key_Up_Event(object sender, KeyEventArgs e)
-    {
-        if ((sender as TextBox).Tag == "Cars")
-        {
-            FilterForCarsTab();
-        }
-        else
-        {
-            FilterForTripsTab();
-        }
-    }
-
     private void tbSearchEmployees_KeyUp(object sender, KeyEventArgs e)
     {
         if (tbSearchEmployees.Text.Length >= 3)
@@ -222,7 +234,7 @@ public partial class TheGreenMile : Form
         }
         else
         {
-            ClearTripEmployeeInformation();
+            
         }
     }
 
@@ -231,6 +243,15 @@ public partial class TheGreenMile : Form
         tbTripsEmployeeEmail.Text = String.Empty;
         tbTripsEmployeeNumber.Text = String.Empty;
         tbTripsFullName.Text = String.Empty;
+    }
+
+    private void ClearTripCarInformation()
+    {
+
+        tbTripsCarNameAndModel.Text = string.Empty;
+        tbTripsStartMilage.Text = string.Empty;
+        nmrTripsEndMilage.Value = nmrTripsEndMilage.Minimum;
+        tbTripsTotalKilometersDriven.Text = string.Empty;
     }
 
     private void lbTripsCars_SelectedIndexChanged(object sender, EventArgs e)
@@ -242,6 +263,11 @@ public partial class TheGreenMile : Form
             tbTripsStartMilage.Text = selectedCar.CurrentMilage.ToString();
             nmrTripsEndMilage.Enabled = true;
             nmrTripsEndMilage.Minimum = selectedCar.CurrentMilage;
+            nmrTripsEndMilage.Value = selectedCar.CurrentMilage;
+        }
+        else
+        {
+            
         }
     }
 
@@ -252,7 +278,7 @@ public partial class TheGreenMile : Form
 
     private void btnRegisterTrip_Click(object sender, EventArgs e)
     {
-        if (lbTripsCars.SelectedItem != null || lbTripsEmployees.SelectedItem != null)
+        if (lbTripsCars.SelectedItem != null && lbTripsEmployees.SelectedItem != null)
         {
             Employee selectedEmployee = lbTripsEmployees.SelectedItem as Employee;
             Car selectedCar = lbTripsCars.SelectedItem as Car;
@@ -260,11 +286,9 @@ public partial class TheGreenMile : Form
             if (Convert.ToInt32(nmrTripsEndMilage.Value) > nmrTripsEndMilage.Minimum)
             {
                 newTrip.CreateNewTrip(selectedEmployee, selectedCar, Convert.ToInt32(tbTripsStartMilage.Text), Convert.ToInt32(nmrTripsEndMilage.Value), cbPrivate.Checked);
-                selectedEmployee.AddTrip(newTrip);
                 selectedCar.AddTrip(newTrip);
-                FillCarsList(_carpool.GetAllCars(), "All");
+                FillCarsList(_carpool.GetCars(), "All");
             }
-
         }
         else
         {
@@ -282,5 +306,15 @@ public partial class TheGreenMile : Form
     private void nmrTripsEndMilage_KeyUp(object sender, KeyEventArgs e)
     {
         updateTotalKilometers();
+    }
+
+    private void lbEmployees_DoubleClick(object sender, EventArgs e)
+    {
+        if (lbEmployees.SelectedItem != null)
+        {
+            Employee selectedEmployee = lbEmployees.SelectedItem as Employee;
+            EmployeeTrips et = new EmployeeTrips(selectedEmployee);
+            et.ShowDialog();
+        }
     }
 }

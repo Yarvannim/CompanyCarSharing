@@ -10,7 +10,7 @@ namespace CompanyCarSharing
     {
         //List for saving every car in the carpool
         private List<Car> _cars = new List<Car>();
-
+        Database db = new Database();
         public Carpool()
         {
 
@@ -25,17 +25,13 @@ namespace CompanyCarSharing
                 Car newCar = new Car();
                 newCar.AssignValuesToCar(brand,model, endoflife, currentkm, licenceplate, maintenanceIntervalKM);
                 _cars.Add(newCar);
+                db.InsertCar(newCar);
             }
             else
             {
                 MessageBox.Show("A car with this licence plate has already been registered", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        public List<Car> GetAllCars()
-        {
-            return _cars;
         }
 
         public List<Car> GetFilteredCars(string searchQuery)
@@ -46,8 +42,12 @@ namespace CompanyCarSharing
 
         public void RemoveCarFromPool(Car car)
         {
-            Car RemovalCar = _cars.First(c => c.LicencePlate == car.LicencePlate);
-            _cars.Remove(RemovalCar);
+            _cars.Remove(car);
+            db.DeleteCar(car);
+        }
+        public List<Car> GetCars()
+        {
+            return db.GetAllCars();
         }
     }
 }

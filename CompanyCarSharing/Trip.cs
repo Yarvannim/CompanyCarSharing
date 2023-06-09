@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace CompanyCarSharing
 {
     public class Trip
     {
+        Database db = new Database();
         private Employee _employee;
 
         public Employee Employee
@@ -63,6 +65,13 @@ namespace CompanyCarSharing
             this._endMilage = endMilage;
             this.Kilometers = endMilage - startMilage;
             this.PrivateTrip = privateTrip;
+            db.InsertTrip(this);
+            db.UpdateMilage(carThatWasUsed, endMilage);
         }
+        public Tuple<DataTable, DataTable, int> GetEmployeeInfo(int id)
+        {
+            return db.GetAllEmployeeTrips(id);
+        }
+
     }
 }
