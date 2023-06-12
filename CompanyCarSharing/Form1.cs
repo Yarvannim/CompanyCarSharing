@@ -140,9 +140,9 @@ public partial class TheGreenMile : Form
     // Function that changes the text based on which employee has been selected
     private void lbTripsEmployees_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (lbTripsEmployees.SelectedItem != null)
+        if (LogicHandler.GetSelectedEmployee(lbTripsEmployees) != null)
         {
-            Employee selectedEmployee = lbTripsEmployees.SelectedItem as Employee;
+            Employee selectedEmployee = LogicHandler.GetSelectedEmployee(lbTripsEmployees);
             LogicHandler.SetSelectedEmployeeInfo(selectedEmployee, tbTripsEmployeeNumber, tbTripsFullName, tbTripsEmployeeEmail);
         }
         else
@@ -154,9 +154,9 @@ public partial class TheGreenMile : Form
     // Function that sets all the values in the trips tab for the car information
     private void lbTripsCars_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (lbTripsCars.SelectedItem != null)
+        if (LogicHandler.GetSelectedCar(lbTripsCars) != null)
         {
-            Car selectedCar = lbTripsCars.SelectedItem as Car;
+            Car selectedCar = LogicHandler.GetSelectedCar(lbTripsCars);
             LogicHandler.SetSelectedCarInfo(selectedCar, tbTripsCarNameAndModel, tbTripsStartMilage, nmrTripsEndMilage);
         }
     }
@@ -171,15 +171,13 @@ public partial class TheGreenMile : Form
     private void btnRegisterTrip_Click(object sender, EventArgs e)
     {
         // if a car and employee have been selected
-        if (lbTripsCars.SelectedItem != null && lbTripsEmployees.SelectedItem != null)
+        if (LogicHandler.GetSelectedCar(lbTripsCars) != null && LogicHandler.GetSelectedEmployee(lbTripsEmployees) != null)
         {
-            Employee selectedEmployee = lbTripsEmployees.SelectedItem as Employee;
-            Car selectedCar = lbTripsCars.SelectedItem as Car;
             Trip newTrip = new Trip();
             if (Convert.ToInt32(nmrTripsEndMilage.Value) > nmrTripsEndMilage.Minimum)
             {
                 // Set the trip information
-                newTrip.CreateNewTrip(selectedEmployee, selectedCar, Convert.ToInt32(tbTripsStartMilage.Text), Convert.ToInt32(nmrTripsEndMilage.Value), cbPrivate.Checked);
+                newTrip.CreateNewTrip(LogicHandler.GetSelectedEmployee(lbTripsEmployees), LogicHandler.GetSelectedCar(lbTripsCars), Convert.ToInt32(tbTripsStartMilage.Text), Convert.ToInt32(nmrTripsEndMilage.Value), cbPrivate.Checked);
                 // Refresh the car information so the milage gets updated
                 FillCarsList(_carpool.GetCars(), "All");
             }
