@@ -25,13 +25,12 @@ namespace CompanyCarSharing
 
         public void RemoveEmployee(Employee employee)
         {
-            Employee employeeToRemove = _employees.First(e => e.EmployeeNumber == employee.EmployeeNumber);
-            db.DeleteEmployee(employeeToRemove);
-            _employees.Remove(employeeToRemove);
+            db.DeleteEmployee(employee);
         }
 
         public List<Employee> GetAllEmployees()
         {
+            //returns a list of all employees
             return db.GetAllEmployees();
         }
         public List<Employee> GetFilteredEmployees(string searchQuery)

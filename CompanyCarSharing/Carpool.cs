@@ -47,6 +47,7 @@ namespace CompanyCarSharing
         }
         public List<Car> GetCars()
         {
+            // Returns the database list of cars
             return db.GetAllCars();
         }
     }

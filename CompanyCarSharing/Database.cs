@@ -255,6 +255,7 @@ namespace CompanyCarSharing
                 }
             }
         }
+        // Returns a tuple with a Datatable for all the trips, The 2nd one is the summary that shows how much they have used a certain car, And the int is for the private kilometers
         public Tuple<DataTable, DataTable, int> GetAllEmployeeTrips(int id)
         {
             DataTable tripSummary = new DataTable();

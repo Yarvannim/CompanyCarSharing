@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CompanyCarSharing.Car">
+    <Position X="8.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAFAAgAAIgAAlQgBIAAAAAAAAAAAQAgkAACAJAAA=</HashCode>
+      <FileName>Car.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_trips" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CompanyCarSharing.Carpool">
+    <Position X="11" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAQAAAAAAAAABACAAAAAAAAAABAAAAAABA=</HashCode>
+      <FileName>Carpool.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_cars" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CompanyCarSharing.Database">
+    <Position X="11.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAQIAAAgIAAAAAEAAAAAAEQAAEAAAAAAAAAE=</HashCode>
+      <FileName>Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CompanyCarSharing.Employee">
+    <Position X="14" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAEAAQCAAAAAEAAkAAAAAAAAAAAAAAAAQABAAAAk=</HashCode>
+      <FileName>Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CompanyCarSharing.Employees">
+    <Position X="17" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAACAAEAAAAAAAAAAEAAQAAAgAAA=</HashCode>
+      <FileName>Employees.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_employees" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CompanyCarSharing.EmployeeTrips">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABCAAABABAACAAAACAAAAIAAAAAAAAAAEAAA=</HashCode>
+      <FileName>EmployeeTrips.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CompanyCarSharing.TheGreenMile" Collapsed="true">
+    <Position X="0.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/wYKEEEWCSAgA5hBPAiEEwMHAgMAAoAARiPBHAAkRTA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CompanyCarSharing.Program" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CompanyCarSharing.Trip">
+    <Position X="11" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAMgAAARAAIAAACABCECCAQgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Trip.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_carUsed" />
+      <Field Name="_employee" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

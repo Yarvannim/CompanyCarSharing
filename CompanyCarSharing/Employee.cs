@@ -37,7 +37,7 @@ namespace CompanyCarSharing
         {
 
         }
-        //remove the employeenumber once you have a functioning database
+        // Assign values to the New employee
         public void AssignValuesToNewEmployee(string firstname, string lastname, string email)
         {
             this._firstName = firstname;
@@ -45,6 +45,7 @@ namespace CompanyCarSharing
             this._email = email;
         }
 
+        // Function to use to create new employee objects from the database
         public void AssignValuesToEmployeeFromDatabase(int id,string firstname, string lastname, string email)
         {
             this._employeeNumber = id;

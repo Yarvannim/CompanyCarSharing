@@ -56,7 +56,7 @@ namespace CompanyCarSharing
         {
 
         }
-
+        // Function to set the trip values
         public void CreateNewTrip(Employee employee, Car carThatWasUsed, int startMilage, int endMilage, bool privateTrip)
         {
             this._employee = employee;

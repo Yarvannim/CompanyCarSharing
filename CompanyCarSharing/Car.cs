@@ -60,7 +60,7 @@ namespace CompanyCarSharing
         {
 
         }
-
+        // Function to assign the values from the application itself
         public void AssignValuesToCar(string brand, string model,int endoflife, int currentkm,string licenceplate, int maintenanceIntervalKM)
         {
             this._brand = brand;
@@ -70,6 +70,7 @@ namespace CompanyCarSharing
             this._licencePlate = licenceplate;
             this._maintenanceInterval = maintenanceIntervalKM;
         }
+        // Function to assign values to the class from the database, difference is here there is the AI ID
         public void AssignValuesToCarFromDatabase(int ID,string brand, string model, int endoflife, int currentkm, string licenceplate, int maintenanceIntervalKM)
         {
             this._id = ID;
@@ -80,6 +81,7 @@ namespace CompanyCarSharing
             this._licencePlate = licenceplate;
             this._maintenanceInterval = maintenanceIntervalKM;
         }
+        // Update the milage value
         public void AddMilage(int Kilometers)
         {
             _currentMilage += Kilometers;
@@ -92,6 +94,7 @@ namespace CompanyCarSharing
 
         public void AddTrip(Trip trip)
         {
+            // Function to add a trip to the car
             _trips.Add(trip);
             AddMilage(trip.Kilometers);
         }
