@@ -18,7 +18,7 @@ namespace CompanyCarSharing
     {
         private readonly string connectionString = "Server=DESKTOP-V9AVE4C\\SQLEXPRESS;Database=IndividualFinalProjectSemester1;Integrated Security=True;";
 
-        public void InsertCar(Car car)
+        public void InsertCar(ICar car)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -49,7 +49,7 @@ namespace CompanyCarSharing
                 }
             }
         }
-        public void UpdateMilage(Car car, int EndMilage)
+        public void UpdateMilage(ICar car, int EndMilage)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -76,9 +76,9 @@ namespace CompanyCarSharing
                 }
             }
         }
-        public List<Car> GetAllCars()
+        public List<ICar> GetAllCars()
         {
-            List<Car> cars = new List<Car>();
+            List<ICar> cars = new List<ICar>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -115,7 +115,7 @@ namespace CompanyCarSharing
             }
             return cars;
         }
-        public void DeleteCar(Car car)
+        public void DeleteCar(ICar car)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

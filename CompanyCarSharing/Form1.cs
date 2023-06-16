@@ -26,7 +26,7 @@ public partial class TheGreenMile : Form
         }
     }
     // Based on location parameter it fills the list 
-    private void FillCarsList(List<Car> Cars, string location)
+    private void FillCarsList(List<ICar> Cars, string location)
     {
         switch (location)
         {

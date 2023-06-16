@@ -9,7 +9,7 @@ namespace CompanyCarSharing
     public class Carpool
     {
         //List for saving every car in the carpool
-        private List<Car> _cars = new List<Car>();
+        private List<ICar> _cars = new List<ICar>();
         Database db = new Database();
         public Carpool()
         {
@@ -34,21 +34,21 @@ namespace CompanyCarSharing
             }
         }
 
-        public List<Car> GetFilteredCars(string searchQuery)
+        public List<ICar> GetFilteredCars(string searchQuery)
         {
             //returns a list of results if the search query matches either the licence plate, brand or the model
             return _cars.Where(c => c.LicencePlate.ToLower().Contains(searchQuery.ToLower()) || c.Brand.ToLower().Contains(searchQuery.ToLower()) || c.Model.ToLower().Contains(searchQuery.ToLower())).ToList();
         }
 
-        public void RemoveCarFromPool(Car car)
+        public void RemoveCarFromPool(ICar car)
         {
             _cars.Remove(car);
             db.DeleteCar(car);
         }
-        public List<Car> GetCars()
+        public List<ICar> GetCars()
         {
             // Returns the database list of cars
-            List<Car> cars = db.GetAllCars();
+            List<ICar> cars = db.GetAllCars();
             _cars = cars;
             return cars;
         }

@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace CompanyCarSharing
 {
-    public class Car
+    public class Car : ICar
     {
         private List<Trip> _trips = new List<Trip>();
+
+        public List<Trip> Trips 
+        { 
+            get { return _trips; } 
+        }
+
         private int _id;
 
         public int ID
