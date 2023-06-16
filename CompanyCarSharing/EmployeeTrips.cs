@@ -18,6 +18,7 @@ namespace CompanyCarSharing
         {
             InitializeComponent();
             this.emp = emp;
+            this.Text = $"{emp.FirstName} {emp.LastName}'s trips";
             fillTotalList();
         }
         private void fillTotalList()

@@ -37,7 +37,7 @@ namespace CompanyCarSharing
         public List<Car> GetFilteredCars(string searchQuery)
         {
             //returns a list of results if the search query matches either the licence plate, brand or the model
-            return _cars.Where(c => c.LicencePlate.Contains(searchQuery) || c.Brand.Contains(searchQuery) || c.Model.Contains(searchQuery)).ToList();
+            return _cars.Where(c => c.LicencePlate.ToLower().Contains(searchQuery.ToLower()) || c.Brand.ToLower().Contains(searchQuery.ToLower()) || c.Model.ToLower().Contains(searchQuery.ToLower())).ToList();
         }
 
         public void RemoveCarFromPool(Car car)
@@ -48,7 +48,9 @@ namespace CompanyCarSharing
         public List<Car> GetCars()
         {
             // Returns the database list of cars
-            return db.GetAllCars();
+            List<Car> cars = db.GetAllCars();
+            _cars = cars;
+            return cars;
         }
     }
 }

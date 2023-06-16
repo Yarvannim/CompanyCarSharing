@@ -204,9 +204,9 @@ public partial class TheGreenMile : Form
     // Function that shows all the trips of an employee when you double click on the employee
     private void lbEmployees_DoubleClick(object sender, EventArgs e)
     {
-        if (lbEmployees.SelectedItem != null)
+        if (LogicHandler.GetSelectedEmployee(lbEmployees) != null)
         {
-            Employee selectedEmployee = lbEmployees.SelectedItem as Employee;
+            Employee selectedEmployee = LogicHandler.GetSelectedEmployee(lbEmployees);
             EmployeeTrips et = new EmployeeTrips(selectedEmployee);
             et.ShowDialog();
         }

@@ -31,12 +31,14 @@ namespace CompanyCarSharing
         public List<Employee> GetAllEmployees()
         {
             //returns a list of all employees
-            return db.GetAllEmployees();
+            List<Employee> e = db.GetAllEmployees();
+            _employees = e;
+            return e;
         }
         public List<Employee> GetFilteredEmployees(string searchQuery)
         {
             //returns a list of results if the search query matches either the licence plate, brand or the model
-            return _employees.Where(e => e.FirstName.Contains(searchQuery) || e.LastName.Contains(searchQuery) || e.Email.Contains(searchQuery)).ToList();
+            return _employees.Where(e => e.FirstName.ToLower().Contains(searchQuery.ToLower()) || e.LastName.ToLower().Contains(searchQuery.ToLower()) || e.Email.ToLower().Contains(searchQuery.ToLower())).ToList();
         }
     }
 }

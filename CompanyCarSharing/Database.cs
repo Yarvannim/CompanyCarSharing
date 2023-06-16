@@ -84,7 +84,7 @@ namespace CompanyCarSharing
                 try
                 {
                     connection.Open();
-                    string query = "Select * from Cars";
+                    string query = "Select * from Cars where Retired = 0";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -122,7 +122,7 @@ namespace CompanyCarSharing
                 try
                 {
                     connection.Open();
-                    string query = "DELETE FROM Cars WHERE Car_id = @CarId";
+                    string query = "Update Cars set Retired = 1 WHERE Car_id = @CarId";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
