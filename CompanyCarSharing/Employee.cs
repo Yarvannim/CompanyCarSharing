@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyCarSharing
 {
-    public class Employee
+    public class Employee : IEmployee
     {
         private int _employeeNumber;
 

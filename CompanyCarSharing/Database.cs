@@ -138,7 +138,7 @@ namespace CompanyCarSharing
                 }
             }
         }
-        public void InsertEmployee(Employee employee)
+        public void InsertEmployee(IEmployee employee)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -166,9 +166,9 @@ namespace CompanyCarSharing
                 }
             }
         }
-        public List<Employee> GetAllEmployees()
+        public List<IEmployee> GetAllEmployees()
         {
-            List<Employee> employees = new List<Employee>();
+            List<IEmployee> employees = new List<IEmployee>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -202,7 +202,7 @@ namespace CompanyCarSharing
             }
             return employees;
         }
-        public void DeleteEmployee(Employee employee)
+        public void DeleteEmployee(IEmployee employee)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

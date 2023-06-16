@@ -22,7 +22,7 @@ namespace CompanyCarSharing
             // if the car does not exist then it will create the new car and add it to the list
             if (!_cars.Any(c => c.LicencePlate == licenceplate))
             {
-                Car newCar = new Car();
+                ICar newCar = new Car();
                 newCar.AssignValuesToCar(brand,model, endoflife, currentkm, licenceplate, maintenanceIntervalKM);
                 _cars.Add(newCar);
                 db.InsertCar(newCar);

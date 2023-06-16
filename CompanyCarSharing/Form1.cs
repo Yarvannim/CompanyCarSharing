@@ -132,7 +132,7 @@ public partial class TheGreenMile : Form
         }
     }
     // Function to fill the employees list on the trips page
-    private void FillEmployeesListOnTripsPage(List<Employee> employees)
+    private void FillEmployeesListOnTripsPage(List<IEmployee> employees)
     {
         LogicHandler.FillList(lbEmployees, employees);
     }
